@@ -10,6 +10,7 @@ public class DraggedIn : MonoBehaviour
         DisableAllDraggables();
         //  Make sure that player does not try to access to menu items at once
         other.transform.position = transform.position;
+        Debug.Log(transform.position);
         // Snap the block into place 
 
         //// TO DO: 
