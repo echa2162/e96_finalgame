@@ -14,7 +14,7 @@ public class levelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (false)
         {
             LoadNextLevel();
         }
@@ -29,7 +29,7 @@ public class levelLoader : MonoBehaviour
     {
         transition.SetTrigger("Start");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
 
         SceneManager.LoadScene(levelIndex);
     }
