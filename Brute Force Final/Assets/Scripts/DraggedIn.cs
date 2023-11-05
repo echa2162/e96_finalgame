@@ -1,20 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DraggedIn : MonoBehaviour
 {
-    
+
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         DisableAllDraggables();
         //  Make sure that player does not try to access to menu items at once
         other.transform.position = transform.position;
-        
         // Snap the block into place 
 
-        //// TO DO: 
-        //// Code to Change scene to corresponding block type
+
+        if (other.CompareTag("playButton"))
+        {
+            StartCoroutine(LoadLevel(1));
+        } else if (other.CompareTag("optionsButton"))
+        {
+            StartCoroutine(LoadLevel(2));
+        }
+
 
     }
 
@@ -28,5 +37,16 @@ public class DraggedIn : MonoBehaviour
             draggable.setDraggable(false);
         }
     }
+
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene(levelIndex);
+    }
+
+
 
 }
