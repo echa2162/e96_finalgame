@@ -5,17 +5,15 @@ using UnityEngine.UI;
 public class GridSquare : MonoBehaviour
 {
     public Image normalImage;
-
     public List<Sprite> normalImages;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
 
+    }
     // Update is called once per frame
     public void SetImage(bool setFirstImage)
     {
-        normalImage.GetComponent < setFirstImage().sprite = setFirstImage ? normalImages[1] : normalImages[0];
+        normalImage.sprite = setFirstImage ? normalImages[1] : normalImages[0];
     }
 }
