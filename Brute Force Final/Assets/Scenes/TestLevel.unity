@@ -290,8 +290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   squarePrefab: {fileID: 7607838014415559063, guid: 20f4ca231ce653840983ce2cc122fd9a, type: 3}
-  xOffset: -3.3
-  yOffset: -3.3
+  xOffset: -2.4583
+  yOffset: -2.4541
 --- !u!4 &727284344
 Transform:
   m_ObjectHideFlags: 0
@@ -307,9 +307,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &850304248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 850304250}
+  - component: {fileID: 850304249}
+  m_Layer: 0
+  m_Name: PieceCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &850304249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850304248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b1d1ed5a405574eab45f96dfa5679b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodBlock: {fileID: 3380751646449716076, guid: 6112efbd1b8b14f4fb2bff98a77ba00a, type: 3}
+  woodPiece: {fileID: 817708866491849286, guid: 048f7d6e13d59744388f7fdc3b91cf41, type: 3}
+--- !u!4 &850304250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850304248}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.0737101, y: -0.29267633, z: -10.599072}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 6658748}
   - {fileID: 727284344}
+  - {fileID: 850304250}

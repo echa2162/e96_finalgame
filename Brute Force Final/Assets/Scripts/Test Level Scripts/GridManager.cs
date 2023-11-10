@@ -5,9 +5,8 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     private int gridSizeX = 6;
-    private int gridSizeY = 6;
-    private float squareSize = 1.3f;
-
+   
+    private float squareSize = 1f;
    [SerializeField] public GameObject squarePrefab;
    [SerializeField] public float xOffset,yOffset;
     void Start()
@@ -17,12 +16,11 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
-        Vector2 offset = new Vector2(xOffset,yOffset);
         for (int x = 0; x < gridSizeX; x++)
         {
-            for (int y = 0; y < gridSizeY; y++)
+            for (int y = 0; y < gridSizeX; y++)
             {
-                Vector2 spawnPosition = new Vector2(x * squareSize, y * squareSize) + offset ;
+                Vector2 spawnPosition = new Vector2(x * squareSize, y * squareSize) + new Vector2(xOffset, yOffset);
                 Instantiate(squarePrefab, spawnPosition, Quaternion.identity, transform);
             }
         }
