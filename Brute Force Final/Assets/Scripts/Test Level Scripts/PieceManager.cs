@@ -12,7 +12,7 @@ public class PieceManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 18; i++)
+        for (int i = 0; i < 3; i++)
         {
             CreatePiece(Random.Range(5.5f, 8.5f), Random.Range(-3f, 1.8f));
         }
