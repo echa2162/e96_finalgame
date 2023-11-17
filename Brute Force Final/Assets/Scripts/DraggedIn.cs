@@ -18,7 +18,7 @@ public class DraggedIn : MonoBehaviour
 
         if (other.CompareTag("playButton"))
         {
-            StartCoroutine(LoadLevel(1));
+            StartCoroutine(LoadLevel(3));
         } else if (other.CompareTag("optionsButton"))
         {
             StartCoroutine(LoadLevel(2));

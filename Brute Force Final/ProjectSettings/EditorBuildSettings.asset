@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TestLevel.unity
     guid: 25dbcf491f414224abcdd12355e4a15a
   - enabled: 1
-    path: Assets/Scenes/WinScene.unity
+    path: Assets/Scenes/ProcLevel.unity
     guid: 2ef91c30b19cdaf4eb7e652fdc412acd
   m_configObjects: {}

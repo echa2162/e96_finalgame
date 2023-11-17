@@ -7,17 +7,18 @@ using UnityEngine.SceneManagement;
 public class GridManager : MonoBehaviour
 {
     private int gridSizeX = 6;
-   
     private float squareSize = 1f;
-   [SerializeField] public GameObject squarePrefab;
-   [SerializeField] public float xOffset,yOffset;
+    private float Offset;
+    
+    [SerializeField] public GameObject squarePrefab;
 
 
     private GameObject[][] slots;
 
     void Start()
     {
-        GenerateGrid();
+    Offset = gridSizeX * -1f/2 + 0.5f;
+    GenerateGrid();
         
     }
 
@@ -31,7 +32,7 @@ public class GridManager : MonoBehaviour
 
             for (int y = 0; y < gridSizeX; y++)
             {
-                Vector2 spawnPosition = new Vector2(x * squareSize, y * squareSize) + new Vector2(xOffset, yOffset);
+                Vector2 spawnPosition = new Vector2(x * squareSize, y * squareSize) + new Vector2(Offset, Offset);
                 slots[x][y] = Instantiate(squarePrefab, spawnPosition, Quaternion.identity, transform);
             }
         }
@@ -56,19 +57,26 @@ public class GridManager : MonoBehaviour
         return count;
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    IEnumerator LoadLevel(int levelID)
     {
+        Debug.Log("Loaded");
 
         yield return new WaitForSeconds(1f);
 
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(levelID);
+
     }
 
+    int counter = 0;
     private void Update()
-    {
-        if(OccupiedCount() == 36)
+    {   
+        if(counter % 500 == 0)
+             Debug.Log(OccupiedCount());
+        counter++;
+        if(OccupiedCount() >= 36)
         {
-            LoadLevel(4);
+            StartCoroutine(LoadLevel(4));
+            
         }
     }
 }

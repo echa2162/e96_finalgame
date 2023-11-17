@@ -1,43 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.PlayerLoop;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class DragPiece : MonoBehaviour
 {
 
-	int numSquares;
+	GameObject MasterBlock;
+	//The Parent object of each block will be what is technically transformed
+	private int numSquares;
 	private bool dragging = false;
 	private Vector3 offset;
 
     private void Start()
     {
-        numSquares = transform.childCount;
+		if(transform.parent != null)
+		{
+			MasterBlock = transform.parent.gameObject;
+		} else
+		{
+			MasterBlock = gameObject;
+		}
+
+        numSquares = MasterBlock.transform.childCount + 1;
+		// All the children of masterblock + itself
     }
     void Update() {
 		if (dragging) {
-			transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+			MasterBlock.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
 		}
 
-
-
 	}
-	
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(gameObject == MasterBlock)
+		{
+			MasterBlock.transform.position = collision.transform.position;
+		}
+    }
+
     private void OnMouseDown() {
-		offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		offset = MasterBlock.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		dragging = true;
 
 	}
 
 	private void OnMouseUp() {
 		dragging = false;
-	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-		Debug.Log("WOW");
-    }
+	}
 
 
 
@@ -46,7 +59,6 @@ public class DragPiece : MonoBehaviour
 		return dragging;
 	}
 
-
-
     
+
 }

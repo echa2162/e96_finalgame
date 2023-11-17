@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlotStatus : MonoBehaviour
 {
     private bool isOccupied = false;
-    private bool isHovered = false;
 
     GameObject[] pieces;
 
@@ -13,22 +13,24 @@ public class SlotStatus : MonoBehaviour
     {
         pieces = GameObject.FindGameObjectsWithTag("woodPiece");
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("WOW");
 
-        isOccupied = true;
-        Debug.Log("WOW");
+
+    
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.GetComponent<DragPiece>().isDragging() == false)
+        {
+            isOccupied = true; 
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("LEFT");
         isOccupied = false;
     }
 
     public bool isOccupying() {  return isOccupied; }
-    public bool isHovering() { return isHovered; }
-
     public bool anyDragged()
     {
         foreach (var piece in pieces)
