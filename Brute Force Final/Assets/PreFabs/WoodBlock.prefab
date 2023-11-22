@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 57774931734530154}
   m_Layer: 0
   m_Name: WoodBlock
-  m_TagString: Untagged
+  m_TagString: woodPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.95, y: 0.95}
   m_EdgeRadius: 0
 --- !u!114 &57774931734530154
 MonoBehaviour:
@@ -171,3 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c92668769bb04c17bc373aab3dcbaec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  occupyingSlot: 0
+  resetPos: 0

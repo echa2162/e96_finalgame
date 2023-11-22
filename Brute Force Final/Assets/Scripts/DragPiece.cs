@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -8,10 +9,16 @@ public class DragPiece : MonoBehaviour
 {
 
 	GameObject MasterBlock;
+	GameObject[] AllBlocks;
 	//The Parent object of each block will be what is technically transformed
-	private int numSquares;
 	private bool dragging = false;
 	private Vector3 offset;
+
+
+    private int numberOfBlocks;
+    private Vector3 originalPos;
+	public bool occupyingSlot;
+	public bool resetPos;
 
     private void Start()
     {
@@ -22,9 +29,10 @@ public class DragPiece : MonoBehaviour
 		{
 			MasterBlock = gameObject;
 		}
-
-        numSquares = MasterBlock.transform.childCount + 1;
-		// All the children of masterblock + itself
+		numberOfBlocks = MasterBlock.transform.childCount+1;
+		//includes itself^^
+		GetAllBlocks();
+		
     }
     void Update() {
 		if (dragging) {
@@ -33,27 +41,66 @@ public class DragPiece : MonoBehaviour
 
 	}
 
+	void GetAllBlocks()
+	{
+        // get the children of the masterblock and put it in AllBlocks
+        AllBlocks = new GameObject[numberOfBlocks];
+        AllBlocks[0] = MasterBlock;
+
+        for (int i = 1; i <= MasterBlock.transform.childCount; i++)
+        {
+            AllBlocks[i] = MasterBlock.transform.GetChild(i - 1).gameObject;
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
+		//Debug.Log("Collided with " + collision.gameObject.name);
         if(gameObject == MasterBlock)
 		{
 			MasterBlock.transform.position = collision.transform.position;
 		}
+
     }
 
-    private void OnMouseDown() {
-		offset = MasterBlock.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		dragging = true;
+    private void OnMouseDown()
+    {
+        offset = MasterBlock.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        dragging = true;
+        originalPos = MasterBlock.transform.position;
+    }
+    private void OnMouseUp()
+    {
+        dragging = false;
 
+      foreach (var block in AllBlocks)
+      {
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(block.transform.position, block.transform.localScale*0.15f, 0);
+            bool collisionWithWoodPiece = false;
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("woodPiece") && collider.gameObject.transform.parent != block.transform.parent && collider.gameObject != MasterBlock)
+                {
+                    // Handle the collision with a wood piece here
+                    MasterBlock.transform.position = originalPos;
+                    collisionWithWoodPiece = true;
+                    break;
+                }
+            }
+
+            if (collisionWithWoodPiece)
+            {
+                break;
+            }
+      }
+
+    }
+
+    public void DestroyPiece()
+	{
+		Destroy(MasterBlock);
 	}
-
-	private void OnMouseUp() {
-		dragging = false;
-
-	}
-
-
-
     public bool isDragging()
 	{
 		return dragging;

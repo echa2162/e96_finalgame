@@ -71,7 +71,7 @@ public class GridManager : MonoBehaviour
     private void Update()
     {   
         if(counter % 500 == 0)
-             Debug.Log(OccupiedCount());
+            // Debug.Log(OccupiedCount());
         counter++;
         if(OccupiedCount() >= 36)
         {

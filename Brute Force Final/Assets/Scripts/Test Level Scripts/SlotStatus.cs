@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlotStatus : MonoBehaviour
 {
-    private bool isOccupied = false;
+    public bool isOccupied = false;
 
     GameObject[] pieces;
 
