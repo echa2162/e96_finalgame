@@ -1,0 +1,54 @@
+{
+    "name": "RotationControls",
+    "maps": [
+        {
+            "name": "RotatePiece",
+            "id": "924dc823-2583-4f49-8446-5203868b7057",
+            "actions": [
+                {
+                    "name": "rotateLeft",
+                    "type": "Button",
+                    "id": "707bf356-016b-498b-ae4f-2112080a8ac6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "rotate Right",
+                    "type": "Button",
+                    "id": "448820a9-e3f2-4562-94dc-7d8f89b50c97",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "89a47ae6-00bf-4a13-9430-2e6d87fe7f27",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rotateLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee1d8a1e-bb1a-4d96-87ec-6981bc7c9c71",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rotate Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

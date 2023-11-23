@@ -1,8 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class DragPiece : MonoBehaviour
@@ -19,9 +20,12 @@ public class DragPiece : MonoBehaviour
     private Vector3 originalPos;
 	public bool occupyingSlot;
 	public bool resetPos;
+    private bool isRotating = false;
 
     private void Start()
     {
+
+
 		if(transform.parent != null)
 		{
 			MasterBlock = transform.parent.gameObject;
@@ -32,6 +36,7 @@ public class DragPiece : MonoBehaviour
 		numberOfBlocks = MasterBlock.transform.childCount+1;
 		//includes itself^^
 		GetAllBlocks();
+   
 		
     }
     void Update() {
@@ -95,6 +100,46 @@ public class DragPiece : MonoBehaviour
             }
       }
 
+    }
+
+
+   public void OnRotateLeft()
+{
+
+        if (dragging)
+        {
+            //rotate the masterblock
+            StartCoroutine(SmoothRotate(MasterBlock.transform, new Vector3(0, 0, 90), 0.3f));
+        }
+ }
+
+    public void OnRotateRight()
+    {
+
+        if (dragging)
+        {
+            //rotate the masterblock
+            StartCoroutine(SmoothRotate(MasterBlock.transform, new Vector3(0, 0, -90), 0.3f));
+        }
+    }
+
+    IEnumerator SmoothRotate(Transform target, Vector3 angles, float duration)
+    {
+        if (!isRotating)
+        {
+            Debug.Log("Rotating");
+
+            isRotating = true;
+            Quaternion startRotation = target.rotation;
+            Quaternion endRotation = Quaternion.Euler(target.eulerAngles + angles);
+            for (float t = 0; t < duration; t += Time.deltaTime)
+            {
+                target.rotation = Quaternion.Lerp(startRotation, endRotation, t / duration);
+                yield return null;
+            }
+            target.rotation = endRotation;
+            isRotating = false;
+        }
     }
 
     public void DestroyPiece()

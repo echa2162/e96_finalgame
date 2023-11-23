@@ -575,7 +575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280430466699291475, guid: 6112efbd1b8b14f4fb2bff98a77ba00a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -985,6 +985,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175121346167443911, guid: 6112efbd1b8b14f4fb2bff98a77ba00a, type: 3}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3380751646449716076, guid: 6112efbd1b8b14f4fb2bff98a77ba00a, type: 3}
       propertyPath: m_Name
       value: WoodBlock
@@ -2243,11 +2247,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280430466699291475, guid: 6112efbd1b8b14f4fb2bff98a77ba00a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.68
+      value: -11.64
       objectReference: {fileID: 0}
     - target: {fileID: 7280430466699291475, guid: 6112efbd1b8b14f4fb2bff98a77ba00a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: 7280430466699291475, guid: 6112efbd1b8b14f4fb2bff98a77ba00a, type: 3}
       propertyPath: m_LocalPosition.z

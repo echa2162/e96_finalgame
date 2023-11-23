@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 175121346167443911}
   - component: {fileID: 4911591454047898663}
   - component: {fileID: 57774931734530154}
+  - component: {fileID: -2307641658115826426}
   m_Layer: 0
   m_Name: WoodBlock
   m_TagString: woodPiece
@@ -157,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.95, y: 0.95}
+  m_Size: {x: 0.99, y: 0.99}
   m_EdgeRadius: 0
 --- !u!114 &57774931734530154
 MonoBehaviour:
@@ -173,3 +174,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   occupyingSlot: 0
   resetPos: 0
+--- !u!114 &-2307641658115826426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380751646449716076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 33876213126d14c4386dd69bdf922ea3, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: RotatePiece
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
