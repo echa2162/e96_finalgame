@@ -27,7 +27,6 @@ public class SlotStatus : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("LEFT");
         isOccupied = false;
     }
 
