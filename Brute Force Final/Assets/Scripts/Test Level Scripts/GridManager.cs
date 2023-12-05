@@ -11,15 +11,27 @@ public class GridManager : MonoBehaviour
     private float Offset;
     
     [SerializeField] public GameObject squarePrefab;
-
+    Scene currentScene;
+    int sceneBuildIndex;
+    int buffer = 0;
 
     private GameObject[][] slots;
 
+    AudioSource victAudio;
+
     void Start()
     {
+        victAudio = GetComponent<AudioSource>();
     Offset = gridSizeX * -1f/2 + 0.5f;
     GenerateGrid();
-        
+
+
+        // Get the current active scene
+        currentScene = SceneManager.GetActiveScene();
+
+        // Get the build index of the current scene
+        sceneBuildIndex = currentScene.buildIndex;
+
     }
 
     void GenerateGrid()
@@ -59,7 +71,11 @@ public class GridManager : MonoBehaviour
 
     IEnumerator LoadLevel(int levelID)
     {
+
+
         Debug.Log("Loaded");
+
+        victAudio.Play();
 
         yield return new WaitForSeconds(1f);
 
@@ -70,11 +86,13 @@ public class GridManager : MonoBehaviour
     int counter = 0;
     private void Update()
     {   
-       // Debug.Log(OccupiedCount());
+        if(counter % 90 == 0)
+        Debug.Log(OccupiedCount());
         counter++;
-        if(OccupiedCount() >= 36)
+        if(OccupiedCount() + buffer  == 36)
         {
-            StartCoroutine(LoadLevel(4));
+            buffer = 1;
+            StartCoroutine(LoadLevel(sceneBuildIndex+1));
             
         }
     }

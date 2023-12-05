@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DraggedIn : MonoBehaviour
 {
-
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         DisableAllDraggables();
@@ -18,10 +16,10 @@ public class DraggedIn : MonoBehaviour
 
         if (other.CompareTag("playButton"))
         {
-            StartCoroutine(LoadLevel(3));
+            StartCoroutine(LoadLevel(2));
         } else if (other.CompareTag("optionsButton"))
         {
-            StartCoroutine(LoadLevel(2));
+            StartCoroutine(LoadLevel(1));
         }
 
 
@@ -46,7 +44,4 @@ public class DraggedIn : MonoBehaviour
 
         SceneManager.LoadScene(levelIndex);
     }
-
-
-
 }

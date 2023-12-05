@@ -9,31 +9,37 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public const string MUSIC_KEY = "musicVolume";
     public const string SFX_KEY = "sfxVolume";
-
+    bool audioPlaying = false;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject); // Destroy the duplicate AudioManager
+            return;
+        }
+
+        if (!audioPlaying)
+        {
+            audioPlaying = true;
+            GetComponent<AudioSource>().Play();
         }
 
         LoadVolume();
-
     }
 
-    
+
     void LoadVolume() //volume saved in VolumeSettings.cs
     {
         float musicVolume = PlayerPrefs.GetFloat(MUSIC_KEY,1f);
         float sfxVolume = PlayerPrefs.GetFloat(SFX_KEY,1f);
         mixer.SetFloat(VolumeSettings.MIXER_MUSIC, Mathf.Log10(musicVolume) * 20);
-        mixer.SetFloat(VolumeSettings.MIXER_SFX, Mathf.Log10(sfxVolume) * 20);
+        mixer.SetFloat(VolumeSettings.MIXER_SFX, 4 * Mathf.Log10(sfxVolume) * 20);
 
     }
 
