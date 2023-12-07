@@ -58,7 +58,7 @@ public class DragPiece : MonoBehaviour
 		if (dragging) {
 			MasterBlock.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
 		}
-
+            
 	}
 
 	void GetAllBlocks()
@@ -108,6 +108,11 @@ public class DragPiece : MonoBehaviour
         audios[0].Play();
 
         GetComponent<AudioSource>().Play();
+
+        if (transform.position.x < -12.5f || transform.position.x > 12.5f || transform.position.y < -7 || transform.position.y > 7)
+        {
+            MasterBlock.transform.position = originalPos;
+        }
 
 
         foreach (var block in AllBlocks)
